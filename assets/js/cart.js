@@ -127,7 +127,7 @@ async function simularCompra() {
     };
 
     try {
-        const respuesta = await fetch('http://localhost:3000/api/ordenes', {
+        const respuesta = await fetch('/api/ordenes', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(datosOrden)

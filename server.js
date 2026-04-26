@@ -74,8 +74,13 @@ app.post('/api/ordenes', async (req, res) => {
     }
 });
 
-// Iniciar servidor
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
-});
+// Iniciar servidor localmente (para desarrollo), pero exportarlo para Vercel
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);
+    });
+}
+
+// Esta línea es la que hace la magia en Vercel
+module.exports = app;

@@ -9,7 +9,7 @@ let productoActual = null;
 
 async function cargarDetalleProducto() {
     try {
-        const respuesta = await fetch('http://localhost:3000/api/productos');
+        const respuesta = await fetch('/api/productos');
         const productosDb = await respuesta.json();
 
         // Buscamos el producto por su id_interno

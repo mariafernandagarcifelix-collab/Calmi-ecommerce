@@ -77,10 +77,8 @@ if (themeToggle) {
         if (body.classList.contains('dark-mode')) {
             theme = 'dark';
             themeIcon.innerText = '☀️';
-            mostrarNotificacion("Modo Nocturno Activado 🌙", "exito");
         } else {
             themeIcon.innerText = '🌙';
-            mostrarNotificacion("Modo Claro Activado ☀️", "exito");
         }
         
         // Guardar la elección del usuario

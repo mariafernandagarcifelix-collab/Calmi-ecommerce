@@ -1,7 +1,7 @@
 async function cargarProductos() {
     try {
         // Hacemos la petición a nuestra nueva API en Node.js
-        const respuesta = await fetch('http://localhost:3000/api/productos');
+        const respuesta = await fetch('/api/productos');
         const productosDb = await respuesta.json();
 
         const contenedorGrid = document.getElementById('contenedor-grid');
