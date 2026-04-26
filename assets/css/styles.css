@@ -1,0 +1,1588 @@
+/* =========================================
+   1. VARIABLES Y FUENTES
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    /* Modo Claro (Por defecto) */
+    --color-primario: #311465;
+    --color-secundario: #6A4C9C;
+    --azul-pastel: #D6E4F0;
+    --morado-suave: #E6D7FF;
+    --verde-menta: #D5F0C1;
+    --bg-color: #F8F9FA;
+    --text-dark: #2D3748;
+    --text-light: #718096;
+    --white: #FFFFFF;
+    --nav-bg: rgba(255, 255, 255, 0.7);
+    --nav-border: rgba(255, 255, 255, 0.8);
+    --nav-shadow: rgba(49, 20, 101, 0.08);
+}
+
+/* Modo Oscuro (Se activa con la clase .dark-mode) */
+body.dark-mode {
+    --bg-color: #0F172A;
+    /* Azul noche profundo */
+    --white: #1E293B;
+    /* Fondo de tarjetas oscuro */
+    --text-dark: #F1F5F9;
+    --text-light: #94A3B8;
+    --azul-pastel: #334155;
+    --morado-suave: #475569;
+    /* Ajustamos los morados para que resalten en fondo oscuro */
+    --color-primario: #A78BFA;
+    --color-secundario: #C4B5FD;
+    --nav-bg: rgba(30, 41, 59, 0.7);
+    /* Azul oscuro translúcido */
+    --nav-border: rgba(255, 255, 255, 0.1);
+    --nav-shadow: rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode {
+    /* Mantenemos el morado de marca #311465 como base para fondos destacados */
+    --color-primario-darker: #36205e;
+    /* Una variante aún más profunda del #311465 */
+    --color-primario: #A78BFA;
+    /* El lila para textos y acentos sigue siendo brillante */
+}
+
+/* 1. Ajuste para el cuadro de Procesamiento Local (Edge Computing) */
+body.dark-mode .dark-glow {
+    /* Cambiamos el degradado por uno más profundo usando tu morado base */
+    background: linear-gradient(135deg, #2f1b55 0%, var(--color-primario-darker) 100%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(167, 139, 250, 0.1);
+}
+
+/* 2. Ajuste para el badge "Más recomendado" en el paquete intermedio */
+body.dark-mode .badge-recomendado {
+    /* Aplicamos el morado profundo sólido para que resalte con autoridad */
+    background: #644d8f;
+    color: var(--white);
+    border: 1px solid var(--color-primario);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Ajuste opcional para el botón del carrito en modo oscuro */
+body.dark-mode .cart-icon {
+    background-color: #644d8f;
+    color: var(--white);
+    border: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+/* Pequeño ajuste para que la transición de colores sea suave */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Estilo para el botón del interruptor */
+.theme-switch {
+    background: var(--azul-pastel);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.theme-switch:hover {
+    transform: scale(1.1);
+    background: var(--morado-suave);
+}
+
+/* =========================================
+   2. RESETEO BÁSICO (Buenas prácticas)
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* =========================================
+   3. NAVEGACIÓN (Navbar)
+   ========================================= */
+/* =========================================
+   3. NAVEGACIÓN PREMIUM (ISLA FLOTANTE)
+   ========================================= */
+.navbar {
+    /* Efecto Isla Flotante */
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    max-width: 1100px;
+    margin: 20px auto;
+    /* La centra y la despega de los bordes */
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+
+    /* Efecto Glassmorphism Refinado */
+    background: var(--nav-bg);
+    /* Cambia de blanco a oscuro automáticamente */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--nav-border);
+    box-shadow: 0 10px 30px var(--nav-shadow);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+/* Animación de línea deslizante para los enlaces normales */
+.nav-links li a:not(.cart-icon) {
+    color: var(--text-dark);
+    font-weight: 500;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:not(.cart-icon)::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-primario);
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    border-radius: 2px;
+}
+
+.nav-links li a:not(.cart-icon):hover {
+    color: var(--color-primario);
+}
+
+.nav-links li a:not(.cart-icon):hover::after {
+    width: 100%;
+}
+
+/* Diseño del botón del Carrito en la Navbar */
+.cart-icon {
+    background-color: var(--azul-pastel);
+    color: var(--color-primario);
+    padding: 8px 18px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+    background-color: var(--color-primario);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(49, 20, 101, 0.2);
+}
+
+/* Burbuja roja/morada para el contador */
+.badge-contador {
+    background-color: var(--color-primario);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.cart-icon:hover .badge-contador {
+    background-color: var(--white);
+    color: var(--color-primario);
+}
+
+/* Ajuste móvil */
+@media (max-width: 768px) {
+    .navbar {
+        top: 10px;
+        margin: 10px;
+        padding: 0.8rem 1.5rem;
+        border-radius: 20px;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .cart-texto {
+        display: none;
+        /* Oculta la palabra "Carrito" en móviles para ahorrar espacio */
+    }
+}
+
+/* =========================================
+   4. BOTONES BÁSICOS
+   ========================================= */
+.btn {
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--color-primario);
+    color: var(--white);
+    box-shadow: 0 4px 6px rgba(49, 20, 101, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   5. SECCIÓN HERO (Página Principal)
+   ========================================= */
+/* =========================================
+   10. REDISEÑO HERO Y CONFIANZA
+   ========================================= */
+.badge-innovatec {
+    display: inline-block;
+    /* Usamos un morado muy suave con baja opacidad para el efecto glass */
+    background: rgba(167, 139, 250, 0.12);
+    color: var(--color-primario);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+
+    /* Borde sutil que define la forma en fondos claros y oscuros */
+    border: 1px solid rgba(167, 139, 250, 0.3);
+
+    /* Refuerza el estilo premium */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(49, 20, 101, 0.05);
+}
+
+.resaltado {
+    color: var(--color-secundario);
+}
+
+.hero-moderno {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5rem 5%;
+    min-height: 85vh;
+    background: radial-gradient(circle at top left, var(--morado-suave) 0%, var(--bg-color) 40%);
+    overflow: hidden;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    color: var(--color-primario);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+}
+
+.hero-botones {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.btn-primario-glow {
+    background: var(--color-primario);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(49, 20, 101, 0.3);
+    transition: all 0.3s ease;
+}
+
+.btn-primario-glow:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 25px rgba(49, 20, 101, 0.4);
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--color-primario);
+    border: 2px solid var(--color-primario);
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secundario:hover {
+    background: var(--color-primario);
+    color: white;
+}
+
+.hero-visual {
+    flex: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.circulo-decorativo {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--azul-pastel);
+    border-radius: 50%;
+    z-index: 0;
+    filter: blur(40px);
+    opacity: 0.6;
+}
+
+.imagen-flotante {
+    position: relative;
+    z-index: 1;
+    max-width: 90%;
+    border-radius: 20px;
+    animation: flotar 6s ease-in-out infinite;
+}
+
+@keyframes flotar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Franja Confianza */
+.franja-confianza {
+    display: flex;
+    justify-content: space-around;
+    background: var(--white);
+    padding: 2rem 5%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    position: relative;
+    z-index: 10;
+}
+
+.item-confianza {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.icono-confianza {
+    font-size: 2.5rem;
+}
+
+/* =========================================
+   11. SECCIÓN SIMULADOR E INTERFAZ
+   ========================================= */
+.seccion-simulador {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rem 5%;
+    background-color: var(--bg-color);
+}
+
+.simulador-info {
+    flex: 1;
+    max-width: 500px;
+}
+
+.simulador-info h2 {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+    margin-bottom: 1.5rem;
+}
+
+.lista-pasos {
+    margin: 2rem 0;
+}
+
+.lista-pasos li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.btn-accion {
+    background: #ff6b6b;
+    /* Rojo suave para iniciar crisis */
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+    transition: 0.3s;
+}
+
+/* Mockup Teléfono */
+.mockup-telefono {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.telefono-pantalla {
+    width: 300px;
+    height: 600px;
+    background: var(--white);
+    border: 12px solid var(--text-dark);
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+
+.app-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-bottom: 40px;
+}
+
+.estado-circulo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: var(--azul-pastel);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+}
+
+#texto-estado {
+    color: var(--text-dark);
+    margin-bottom: 40px;
+}
+
+.metricas {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.metrica-box {
+    flex: 1;
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.metrica-titulo {
+    font-size: 0.8rem;
+    color: var(--text-light);
+}
+
+.metrica-valor {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.reproductor-oculto {
+    display: none;
+    /* Se muestra con JS */
+    margin-top: 30px;
+    background: var(--morado-suave);
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    color: var(--color-primario);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* Clases dinámicas añadidas por JS */
+.estado-alerta {
+    background: #ffe3e3;
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.4);
+}
+
+.estado-regulando {
+    background: var(--morado-suave);
+    box-shadow: 0 0 30px rgba(106, 76, 156, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .hero-moderno,
+    .seccion-simulador {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .franja-confianza {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-botones {
+        justify-content: center;
+    }
+
+    .mockup-telefono {
+        margin-top: 3rem;
+    }
+}
+
+/* =========================================
+   6. TIENDA Y TARJETAS DE PRODUCTO
+   ========================================= */
+.contenedor-tienda {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.contenedor-tienda h1 {
+    color: var(--color-primario);
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+}
+
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.tarjeta-producto {
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(49, 20, 101, 0.1);
+}
+
+.tarjeta-producto img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+}
+
+.tarjeta-producto h3 {
+    color: var(--color-primario);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tarjeta-producto .precio {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.tarjeta-producto p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    /* Empuja el botón hacia abajo */
+}
+
+.tarjeta-producto .btn {
+    width: 100%;
+}
+
+/* =========================================
+   7. DETALLE DEL PRODUCTO
+   ========================================= */
+.contenedor-producto {
+    padding: 4rem 5%;
+    display: flex;
+    gap: 4rem;
+    /* CAMBIO: De 'center' a 'flex-start' para que el texto empiece desde arriba */
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 70vh;
+}
+
+.producto-imagen {
+    flex: 1;
+    /* NUEVO: Hace que la imagen se quede "pegada" al hacer scroll */
+    position: sticky;
+    top: 120px;
+    /* Se detiene un poco por debajo de tu navbar flotante */
+}
+
+.producto-imagen img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: var(--white);
+    padding: 2rem;
+    object-fit: contain;
+}
+
+.producto-info {
+    flex: 1;
+    /* Toma la otra mitad */
+}
+
+.producto-info h1 {
+    color: var(--color-primario);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.producto-info .precio-destacado {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
+.producto-info p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+.lista-incluye {
+    margin-bottom: 2rem;
+}
+
+.lista-incluye li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+/* Bolita verde con palomita para la lista */
+.lista-incluye li::before {
+    content: "✓";
+    color: var(--color-primario);
+    font-weight: bold;
+    background: var(--verde-menta);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+/* Ocultar contenido de error por defecto */
+#producto-no-encontrado {
+    display: none;
+    text-align: center;
+    padding: 5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor-producto {
+        flex-direction: column;
+    }
+}
+
+/* =========================================
+   8. CARRITO DE COMPRAS
+   ========================================= */
+.contenedor-carrito {
+    padding: 4rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    min-height: 60vh;
+}
+
+.carrito-items {
+    flex: 2;
+    /* Toma 2 tercios del espacio */
+}
+
+.carrito-resumen {
+    flex: 1;
+    /* Toma 1 tercio del espacio */
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.carrito-vacio {
+    text-align: center;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 15px;
+}
+
+.item-carrito {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item-carrito img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.item-info {
+    flex-grow: 1;
+    margin-left: 1.5rem;
+}
+
+.item-info h4 {
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-cantidad {
+    background: var(--azul-pastel);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--color-primario);
+}
+
+.btn-eliminar {
+    background: none;
+    border: none;
+    color: #e53e3e;
+    /* Rojo suave para eliminar */
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-decoration: underline;
+}
+
+.resumen-fila {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.resumen-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    border-top: 2px solid var(--bg-color);
+    padding-top: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contenedor-carrito {
+        flex-direction: column;
+    }
+
+    .item-carrito {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .item-info {
+        margin-left: 0;
+    }
+}
+
+/* =========================================
+   9. NOTIFICACIONES FLOTANTES (TOASTS)
+   ========================================= */
+.toast-contenedor {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+    /* Asegura que esté por encima de todo */
+}
+
+.toast {
+    min-width: 250px;
+    padding: 15px 25px;
+    border-radius: 10px;
+    background-color: var(--white);
+    color: var(--text-dark);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transform: translateX(120%);
+    animation: deslizarEntrada 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+/* Colores según el tipo de mensaje */
+.toast.exito {
+    border-left: 6px solid var(--verde-menta);
+}
+
+.toast.error {
+    border-left: 6px solid #ff6b6b;
+    /* Un rojo suave */
+}
+
+/* Animaciones */
+@keyframes deslizarEntrada {
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes deslizarSalida {
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+.toast.saliendo {
+    animation: deslizarSalida 0.4s ease forwards;
+}
+
+/* =========================================
+   12. TECNOLOGÍA (TECH SHOWCASE)
+   ========================================= */
+.seccion-tecnologia {
+    padding: 6rem 5%;
+    background: var(--bg-color);
+}
+
+.tecnologia-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+}
+
+.tecnologia-header h2 {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.tech-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.tech-card {
+    border-radius: 24px;
+    padding: 3rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.tech-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Tarjeta Principal */
+.full-width {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.dark-glow {
+    background: linear-gradient(135deg, var(--color-primario) 0%, var(--color-secundario) 100%);
+    color: var(--white);
+    box-shadow: 0 20px 40px rgba(49, 20, 101, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dark-glow h3 {
+    color: var(--verde-menta);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.dark-glow p {
+    color: var(--morado-suave);
+    font-size: 1.15rem;
+    line-height: 1.7;
+}
+
+.tech-icon-large {
+    font-size: 7rem;
+    opacity: 0.9;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+}
+
+/* Tarjetas Secundarias */
+.tech-row {
+    display: flex;
+    gap: 25px;
+}
+
+.tech-row .tech-card {
+    flex: 1;
+}
+
+.glass-effect {
+    background: var(--white);
+    border: 1px solid var(--azul-pastel);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+.glass-effect h3 {
+    color: var(--color-primario);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.glass-effect p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.tech-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 20px;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+
+    .full-width,
+    .tech-row {
+        flex-direction: column;
+    }
+
+    .tech-icon-large {
+        display: none;
+        /* Ocultamos el cerebro gigante en móviles para ahorrar espacio */
+    }
+
+    .tech-card {
+        padding: 2rem;
+    }
+}
+
+.seccion-tecnologia {
+    padding: 6rem 5%;
+    background: var(--white);
+}
+
+.tecnologia-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+}
+
+.tecnologia-header h2 {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.bento-item:hover {
+    transform: translateY(-5px);
+}
+
+
+.bento-large {
+    /* Quitamos la propiedad "grid-column: span 2" que forzaba el salto hacia abajo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bento-oscuro {
+    background: var(--color-primario);
+    color: var(--white);
+}
+
+.bento-oscuro h3 {
+    color: var(--verde-menta);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.bento-oscuro p {
+    color: var(--morado-suave);
+    font-size: 1.1rem;
+}
+
+.bento-icono {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.bento-item h3 {
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+/* =========================================
+   13. COMPARADOR DE PAQUETES (PRICING)
+   ========================================= */
+.seccion-pricing {
+    padding: 6rem 5%;
+    background: linear-gradient(to bottom, var(--bg-color), var(--white));
+    text-align: center;
+}
+
+.seccion-pricing h2 {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+}
+
+.pricing-sub {
+    color: var(--text-light);
+    margin-bottom: 4rem;
+    font-size: 1.1rem;
+}
+
+.pricing-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 3rem 2rem;
+    flex: 1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--azul-pastel);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pricing-card h3 {
+    font-size: 1.5rem;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.pricing-precio {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.pricing-precio span {
+    font-size: 1rem;
+    color: var(--text-light);
+}
+
+.pricing-desc {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    min-height: 45px;
+}
+
+.pricing-lista {
+    text-align: left;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.pricing-lista li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text-dark);
+}
+
+.pricing-lista li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--verde-menta);
+    font-weight: bold;
+}
+
+.pricing-card .btn {
+    width: 100%;
+}
+
+/* Diseño Destacado para el paquete Intermedio */
+.card-destacada {
+    transform: scale(1.05);
+    border: 2px solid var(--color-primario);
+    box-shadow: 0 20px 40px rgba(49, 20, 101, 0.15);
+    position: relative;
+    z-index: 10;
+}
+
+.badge-recomendado {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-secundario);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-large {
+        grid-column: span 1;
+    }
+
+    .pricing-contenedor {
+        flex-direction: column;
+    }
+
+    .card-destacada {
+        transform: scale(1);
+    }
+}
+
+/* =========================================
+   14. REDISEÑO PREMIUM: TIENDA, PRODUCTO Y CARRITO
+   ========================================= */
+
+/* --- Mejoras a la Tienda --- */
+.contenedor-tienda {
+    padding: 6rem 5%;
+    background: var(--bg-color);
+}
+
+.tienda-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.tienda-header h1 {
+    font-size: 2.8rem;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.tarjeta-producto {
+    background: var(--white);
+    border: 1px solid var(--azul-pastel);
+    border-radius: 24px;
+    /* Bordes más redondeados y modernos */
+    padding: 2.5rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Animación de rebote suave */
+    position: relative;
+    overflow: hidden;
+}
+
+.tarjeta-producto:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(49, 20, 101, 0.1);
+    border-color: var(--color-secundario);
+}
+
+.tarjeta-producto img {
+    transition: transform 0.4s ease;
+}
+
+.tarjeta-producto:hover img {
+    transform: scale(1.08);
+    /* La imagen hace un ligero zoom al pasar el mouse */
+}
+
+/* --- Mejoras al Detalle del Producto --- */
+.breadcrumb {
+    padding: 2rem 5% 0;
+    font-weight: 600;
+}
+
+.breadcrumb a {
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primario);
+}
+
+.producto-imagen img {
+    /* Fondo estilo "estudio fotográfico" para el producto */
+    background: radial-gradient(circle, var(--white) 0%, var(--bg-color) 100%);
+    border: 1px solid var(--azul-pastel);
+    border-radius: 30px;
+    padding: 3rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+.producto-info h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+}
+
+.producto-info .precio-destacado {
+    color: var(--color-secundario);
+    font-size: 2.5rem;
+}
+
+/* --- Mejoras al Carrito de Compras --- */
+.carrito-header {
+    text-align: center;
+    padding: 3rem 0 1rem;
+}
+
+.carrito-header h1 {
+    font-size: 2.5rem;
+    color: var(--color-primario);
+}
+
+.item-carrito {
+    border-radius: 20px;
+    border: 1px solid var(--morado-suave);
+    transition: all 0.3s ease;
+}
+
+.item-carrito:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.carrito-resumen {
+    border-radius: 24px;
+    border: 1px solid var(--azul-pastel);
+    background: linear-gradient(145deg, var(--white), var(--bg-color));
+}
+
+.resumen-total {
+    font-size: 1.8rem;
+}
+
+.carrito-vacio {
+    border: 2px dashed var(--azul-pastel);
+    background: transparent;
+    box-shadow: none;
+    padding: 5rem 2rem;
+}
+
+/* Efecto Glassmorphism en la Navbar para que se vea premium al hacer scroll */
+/* .navbar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+} */
+
+/* =========================================
+   15. ESPECIFICACIONES DEL PRODUCTO (PRODUCT.HTML)
+   ========================================= */
+.seccion-ideal {
+    background: rgba(213, 240, 193, 0.3);
+    /* Verde menta muy suave */
+    padding: 15px 20px;
+    border-radius: 12px;
+    border-left: 5px solid var(--verde-menta);
+    margin-bottom: 2rem;
+}
+
+.seccion-ideal strong {
+    color: var(--color-primario);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.especificaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 2.5rem;
+}
+
+.spec-item {
+    background: var(--bg-color);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid var(--azul-pastel);
+}
+
+.spec-item .spec-titulo {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.spec-item .spec-valor {
+    color: var(--color-primario);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Estilos para el Ticket en el Carrito */
+.ticket-lista {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px dashed var(--text-light);
+    padding-bottom: 1rem;
+}
+
+.ticket-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+/* Reducimos el tamaño de la fila de Total */
+.resumen-total {
+    font-size: 1.35rem;
+    align-items: center;
+}
+
+/* =========================================
+   16. FOOTER
+   ========================================= */
+.footer-calmi {
+    background: linear-gradient(135deg, #1a0a33 0%, #311465 100%);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 4rem 5% 2rem;
+    margin-top: 4rem;
+}
+
+body.dark-mode .footer-calmi {
+    background: linear-gradient(135deg, #0a0516 0%, #1e1040 100%);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.footer-brand {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0.5rem;
+}
+
+.footer-tagline {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.95rem;
+    margin-top: 0.4rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.footer-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-col h6 {
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.78rem;
+    margin-bottom: 1.2rem;
+}
+
+.footer-col ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 0.65rem;
+}
+
+.footer-col ul li a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-col ul li a:hover {
+    color: #fff;
+}
+
+.footer-col p {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.footer-heart {
+    color: #a78bfa;
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }

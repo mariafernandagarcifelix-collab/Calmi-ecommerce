@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Carrito | Calmi</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Calmi</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="tienda.html">Paquetes</a></li>
+                <li>
+                    <a href="carrito.html" class="cart-icon">
+                        🛒 <span class="cart-texto">Carrito</span>
+                        <span class="badge-contador" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <button id="theme-toggle" class="theme-switch" title="Cambiar modo">
+                <span id="theme-icon">🌙</span>
+            </button>
+        </div>
+
+    </nav>
+
+    <main>
+        <div class="carrito-header">
+            <h1>Finalizar Compra</h1>
+            <p style="color: var(--text-light);">Revisa los ecosistemas seleccionados antes de procesar tu orden segura.
+            </p>
+        </div>
+
+        <div class="contenedor-carrito">
+            <div id="lista-carrito" class="carrito-items">
+            </div>
+
+            <div id="resumen-carrito" class="carrito-resumen">
+                <h3 style="color: var(--color-primario); font-size: 1.5rem;">Resumen de la Orden</h3>
+                <hr style="border: 0; border-top: 1px solid var(--azul-pastel); margin: 1.5rem 0;">
+
+                <ul id="ticket-lista" class="ticket-lista"></ul>
+
+                <div class="resumen-fila">
+                    <span style="color: var(--text-light);">Subtotal</span>
+                    <span id="subtotal-precio" style="font-weight: 600;">$0.00</span>
+                </div>
+                <div class="resumen-fila">
+                    <span style="color: var(--text-light);">Envío Nacional</span>
+                    <span style="color: var(--verde-menta); font-weight: bold;">Gratis</span>
+                </div>
+
+                <div class="resumen-fila resumen-total">
+                    <span>Total a Pagar</span>
+                    <span id="total-precio">$0.00</span>
+                </div>
+
+                <button class="btn btn-primario-glow btn-block" onclick="simularCompra()">Comprar</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer-calmi">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">CALMI</div>
+                <p class="footer-tagline">Tranquilidad para ti. Un mundo mejor para ellos.</p>
+                <div class="footer-badges">
+                    <span class="footer-badge">🛡️ No invasivo</span>
+                    <span class="footer-badge">📵 Sin internet</span>
+                    <span class="footer-badge">🧠 Edge AI</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h6>Producto</h6>
+                <ul>
+                    <li><a href="tienda.html">Kit Básico</a></li>
+                    <li><a href="tienda.html">Kit Intermedio</a></li>
+                    <li><a href="tienda.html">Kit Premium</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Empresa</h6>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Investigación</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Pago 100% seguro</h6>
+                <p>Tu orden está protegida. Procesamos cada compra de forma segura y enviamos a todo México sin costo adicional.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Calmi — InnovaTEC. Todos los derechos reservados.</span>
+            <span>Hecho con <span class="footer-heart">♥</span> para las familias</span>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/cart.js"></script>
+</body>
+
+</html>

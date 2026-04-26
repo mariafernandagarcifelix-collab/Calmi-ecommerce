@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CALMI | Kit de monitoreo y regulación del sueño para personas con Trastorno del Espectro Autista</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">CALMI</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="tienda.html">Paquetes</a></li>
+                <li>
+                    <a href="carrito.html" class="cart-icon">
+                        🛒 <span class="cart-texto">Carrito</span>
+                        <span class="badge-contador" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <button id="theme-toggle" class="theme-switch" title="Cambiar modo">
+                <span id="theme-icon">🌙</span>
+            </button>
+        </div>
+
+    </nav>
+
+    <header class="hero-moderno">
+        <div class="hero-text">
+            <h1>Tranquilidad para ti.<br>Un mundo sin sobreestimulación <span class="resaltado">para ellos.</span></h1>
+            <p>El primer ecosistema híbrido que monitorea variables biométricas y regula crisis sensoriales en tiempo
+                real, con o sin conexión a internet.</p>
+            <div class="hero-botones">
+                <a href="tienda.html" class="btn btn-primario-glow">Ver Paquetes</a>
+                <a href="#simulador" class="btn btn-secundario">Ver cómo funciona</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="circulo-decorativo"></div>
+            <img src="assets/img/hero-bg.png" alt="Niño usando el ecosistema Calmi" class="imagen-flotante">
+        </div>
+    </header>
+
+    <section class="franja-confianza">
+        <div class="item-confianza">
+            <span class="icono-confianza">🛡️</span>
+            <div>
+                <strong>100% Seguro</strong>
+                <p>Tecnología no invasiva</p>
+            </div>
+        </div>
+        <div class="item-confianza">
+            <span class="icono-confianza">📵</span>
+            <div>
+                <strong>Modo Híbrido</strong>
+                <p>Funciona sin internet</p>
+            </div>
+        </div>
+        <div class="item-confianza">
+            <span class="icono-confianza">🧠</span>
+            <div>
+                <strong>Inteligente</strong>
+                <p>Procesamiento local rápido</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="simulador" class="seccion-simulador">
+        <div class="simulador-info">
+            <h2>Detección y respuesta en <span class="resaltado">milisegundos</span></h2>
+            <p>No esperes a que la crisis escale. Calmi lee las señales biométricas de tu hijo (ritmo cardíaco y
+                conductancia de la piel) para anticiparse a la sobreestimulación.</p>
+
+            <ul class="lista-pasos">
+                <li><strong>1. Monitorea:</strong> Lectura constante y silenciosa.</li>
+                <li><strong>2. Detecta:</strong> Identifica picos de cortisol y estrés.</li>
+                <li><strong>3. Regula:</strong> Activa audio terapéutico automáticamente.</li>
+            </ul>
+
+            <button id="btn-simular" class="btn btn-accion">Simular Crisis ⚠️</button>
+        </div>
+
+        <div class="mockup-telefono">
+            <div class="telefono-pantalla" id="pantalla-app">
+                <div class="app-header">
+                    <span>Calmi App</span>
+                    <span class="bateria">🔋 85%</span>
+                </div>
+                <div class="estado-circulo" id="circulo-estado">
+                    <span id="emoji-estado">😴</span>
+                </div>
+                <h3 id="texto-estado">Calmado</h3>
+
+                <div class="metricas">
+                    <div class="metrica-box">
+                        <span class="metrica-titulo">❤️ BPM</span>
+                        <span class="metrica-valor" id="valor-bpm">82</span>
+                    </div>
+                    <div class="metrica-box">
+                        <span class="metrica-titulo">💧 GSR</span>
+                        <span class="metrica-valor" id="valor-gsr">Normal</span>
+                    </div>
+                </div>
+
+                <div class="reproductor-oculto" id="reproductor-audio">
+                    🎵 Reproduciendo Ruido Rosa...
+                    <div class="ondas">
+                        <span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="seccion-tecnologia">
+        <div class="tecnologia-header">
+            <h2>Ingeniería de vanguardia, <br>diseñada para el bienestar.</h2>
+            <p>La arquitectura en Flutter y el procesamiento IoT local garantizan que Calmi nunca dependa de una
+                conexión a internet para proteger a tu hijo.</p>
+        </div>
+
+        <div class="tech-showcase">
+            <div class="tech-card full-width dark-glow">
+                <div class="tech-text">
+                    <h3>⚡ Procesamiento Local (Edge Computing)</h3>
+                    <p>La pulsera no solo recopila datos, los analiza de inmediato. Un microcontrolador integrado evalúa
+                        los picos de ritmo cardíaco y conductancia de la piel en tiempo real, tomando la decisión de
+                        activar el audio relajante en milisegundos, incluso si tu celular está apagado o no hay señal
+                        WiFi.</p>
+                </div>
+                <div class="tech-icon-large">🧠</div>
+            </div>
+
+            <div class="tech-row">
+                <div class="tech-card glass-effect">
+                    <span class="tech-icon">🔬</span>
+                    <h3>Sensores Biométricos</h3>
+                    <p>Lectura constante a través de fotopletismografía (PPG) para el pulso y sensores de actividad
+                        electrodérmica (GSR) que detectan el aumento de sudoración asociado a picos de estrés.</p>
+                </div>
+
+                <div class="tech-card glass-effect">
+                    <span class="tech-icon">📱</span>
+                    <h3>App Multiplataforma</h3>
+                    <p>Arquitectura híbrida desarrollada en Flutter. Revisa el historial clínico de las crisis, ajusta
+                        las terapias de sonido y recibe alertas tempranas mediante notificaciones push nativas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="seccion-pricing">
+        <h2>Elige el ecosistema <span class="resaltado">Calmi</span> ideal</h2>
+        <p class="pricing-sub">Sistemas escalables que crecen con las necesidades de tu familia.</p>
+
+        <div class="pricing-contenedor">
+            <div class="pricing-card">
+                <h3>Básico</h3>
+                <div class="pricing-precio">$1,599<span> MXN</span></div>
+                <p class="pricing-desc">El guardián del hogar. Ideal para crear un entorno seguro en casa.</p>
+                <ul class="pricing-lista">
+                    <li>Pulsera Inteligente</li>
+                    <li>App Móvil Calmi</li>
+                    <li>Bocina Inteligente</li>
+                    <li>Monitoreo Local</li>
+                </ul>
+                <a href="producto.html?id=basico" class="btn btn-secundario">Ver Detalles</a>
+            </div>
+
+            <div class="pricing-card card-destacada">
+                <div class="badge-recomendado">🌟 Más Recomendado</div>
+                <h3>Intermedio</h3>
+                <div class="pricing-precio">$2,299<span> MXN</span></div>
+                <p class="pricing-desc">Libertad en movimiento. Acompaña a tu hijo a la escuela o terapia.</p>
+                <ul class="pricing-lista">
+                    <li>Pulsera Inteligente</li>
+                    <li>App Móvil Calmi</li>
+                    <li><strong>Audífonos In-Ear</strong></li>
+                    <li>Reducción de Ruido Activa</li>
+                </ul>
+                <a href="producto.html?id=intermedio" class="btn btn-primario-glow">Elegir Intermedio</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Premium</h3>
+                <div class="pricing-precio">$3,499<span> MXN</span></div>
+                <p class="pricing-desc">Inmersión total. Aislamiento acústico completo para máxima tranquilidad.</p>
+                <ul class="pricing-lista">
+                    <li>Pulsera Inteligente</li>
+                    <li>App Móvil Calmi</li>
+                    <li><strong>Audífonos Over-Ear</strong></li>
+                    <li>Audio Terapéutico Envolvente</li>
+                </ul>
+                <a href="producto.html?id=premium" class="btn btn-secundario">Ver Detalles</a>
+            </div>
+        </div>
+    </section>
+    <footer class="footer-calmi">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">CALMI</div>
+                <p class="footer-tagline">Tranquilidad para ti. Un mundo mejor para ellos.</p>
+                <div class="footer-badges">
+                    <span class="footer-badge">🛡️ No invasivo</span>
+                    <span class="footer-badge">📵 Sin internet</span>
+                    <span class="footer-badge">🧠 Edge AI</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h6>Producto</h6>
+                <ul>
+                    <li><a href="tienda.html">Kit Básico</a></li>
+                    <li><a href="tienda.html">Kit Intermedio</a></li>
+                    <li><a href="tienda.html">Kit Premium</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Empresa</h6>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Investigación</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Diseñado con propósito</h6>
+                <p>Calmi nació de la necesidad real de familias con niños en el espectro autista. Cada sensor, cada sonido y cada alerta fue diseñado pensando en su bienestar.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Calmi — InnovaTEC. Todos los derechos reservados.</span>
+            <span>Hecho con <span class="footer-heart">♥</span> para las familias</span>
+        </div>
+    </footer>
+    <script src="assets/js/simulador.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>

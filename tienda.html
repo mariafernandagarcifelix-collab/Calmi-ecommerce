@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda | Kits Calmi</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Calmi</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="tienda.html">Paquetes</a></li>
+                <li>
+                    <a href="carrito.html" class="cart-icon">
+                        🛒 <span class="cart-texto">Carrito</span>
+                        <span class="badge-contador" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <button id="theme-toggle" class="theme-switch" title="Cambiar modo">
+                <span id="theme-icon">🌙</span>
+            </button>
+        </div>
+
+    </nav>
+
+    <main class="contenedor-tienda">
+        <div class="tienda-header">
+            <span class="badge-innovatec">Ecosistemas Disponibles</span>
+            <h1>Encuentra el kit <span class="resaltado">Calmi</span> ideal</h1>
+            <p>Sistemas diseñados para adaptarse a la rutina de tu familia, desde el hogar hasta la escuela.</p>
+        </div>
+
+        <div id="contenedor-grid" class="grid-productos">
+        </div>
+    </main>
+
+    <footer class="footer-calmi">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">CALMI</div>
+                <p class="footer-tagline">Tranquilidad para ti. Un mundo mejor para ellos.</p>
+                <div class="footer-badges">
+                    <span class="footer-badge">🛡️ No invasivo</span>
+                    <span class="footer-badge">📵 Sin internet</span>
+                    <span class="footer-badge">🧠 Edge AI</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h6>Producto</h6>
+                <ul>
+                    <li><a href="tienda.html">Kit Básico</a></li>
+                    <li><a href="tienda.html">Kit Intermedio</a></li>
+                    <li><a href="tienda.html">Kit Premium</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Empresa</h6>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Investigación</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Ecosistemas Calmi</h6>
+                <p>Sistemas diseñados para adaptarse a la rutina de tu familia, desde el hogar hasta la escuela.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Calmi — InnovaTEC. Todos los derechos reservados.</span>
+            <span>Hecho con <span class="footer-heart">♥</span> para las familias</span>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/tienda.js"></script>
+</body>
+
+</html>

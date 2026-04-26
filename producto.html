@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Kit | Calmi</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Calmi</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="tienda.html">Paquetes</a></li>
+                <li>
+                    <a href="carrito.html" class="cart-icon">
+                        🛒 <span class="cart-texto">Carrito</span>
+                        <span class="badge-contador" id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <button id="theme-toggle" class="theme-switch" title="Cambiar modo">
+                <span id="theme-icon">🌙</span>
+            </button>
+        </div>
+
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="tienda.html">← Volver a todos los paquetes</a>
+    </div>
+
+    <main>
+        <div id="producto-detalle" class="contenedor-producto">
+        </div>
+
+        <div id="producto-no-encontrado">
+            <h2>Oops... El kit que buscas no existe.</h2>
+            <br>
+            <a href="tienda.html" class="btn btn-primario-glow">Volver a la tienda</a>
+        </div>
+    </main>
+
+    <footer class="footer-calmi">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-brand">CALMI</div>
+                <p class="footer-tagline">Tranquilidad para ti. Un mundo mejor para ellos.</p>
+                <div class="footer-badges">
+                    <span class="footer-badge">🛡️ No invasivo</span>
+                    <span class="footer-badge">📵 Sin internet</span>
+                    <span class="footer-badge">🧠 Edge AI</span>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h6>Producto</h6>
+                <ul>
+                    <li><a href="tienda.html">Kit Básico</a></li>
+                    <li><a href="tienda.html">Kit Intermedio</a></li>
+                    <li><a href="tienda.html">Kit Premium</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Empresa</h6>
+                <ul>
+                    <li><a href="#">Nosotros</a></li>
+                    <li><a href="#">Investigación</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h6>Diseñado con propósito</h6>
+                <p>Calmi nació de la necesidad real de familias con niños en el espectro autista. Cada sensor y cada sonido fue diseñado pensando en su bienestar.</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2025 Calmi — InnovaTEC. Todos los derechos reservados.</span>
+            <span>Hecho con <span class="footer-heart">♥</span> para las familias</span>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/product.js"></script>
+</body>
+
+</html>
