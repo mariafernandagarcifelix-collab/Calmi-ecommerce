@@ -1586,3 +1586,76 @@ body.dark-mode .footer-calmi {
 
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
+
+
+/* =========================================
+   16. DISEÑO RESPONSIVO (MÓVILES Y TABLETS)
+   ========================================= */
+
+@media (max-width: 900px) {
+    /* --- 1. Ajustes Generales de Texto y Botones --- */
+    .hero-text h1 { font-size: 2.5rem; }
+    .producto-info h1 { font-size: 2.2rem; }
+    .tienda-header h1 { font-size: 2.2rem; }
+    .seccion-tecnologia h2, .seccion-pricing h2 { font-size: 2rem; }
+    
+    .hero-botones {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .hero-botones .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* --- 2. Detalle del Producto (producto.html) --- */
+    .contenedor-producto {
+        flex-direction: column; /* Apila la imagen y el texto */
+        gap: 2rem;
+        padding: 2rem 5%;
+    }
+    
+    .producto-imagen {
+        position: relative; /* Desactiva el efecto "pegajoso" en móviles */
+        top: 0;
+        width: 100%;
+    }
+
+    .producto-imagen img {
+        padding: 1.5rem; /* Reduce el fondo gris en móviles */
+    }
+
+    .especificaciones-grid {
+        grid-template-columns: 1fr; /* Una sola columna para las especificaciones */
+    }
+
+    /* --- 3. Carrito de Compras (carrito.html) --- */
+    .contenedor-carrito {
+        display: flex;
+        flex-direction: column; /* Apila la lista de productos y el ticket/total */
+        gap: 2rem;
+        padding: 0 5%;
+    }
+
+    /* --- 4. Tienda (tienda.html) --- */
+    .grid-productos {
+        display: grid;
+        /* La magia: crea tantas columnas como quepan, pero si la pantalla es menor a 280px, usa 1 sola */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 0 5%;
+    }
+}
+
+/* Ajustes extra para teléfonos muy pequeños (max 500px) */
+@media (max-width: 500px) {
+    .navbar {
+        padding: 0.6rem 1rem;
+    }
+    .hero-moderno {
+        padding: 3rem 5%;
+    }
+    .tech-card {
+        padding: 1.5rem;
+    }
+}
