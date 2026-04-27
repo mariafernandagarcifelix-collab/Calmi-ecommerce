@@ -237,17 +237,37 @@ ul {
     .navbar {
         top: 10px;
         margin: 10px;
-        padding: 0.8rem 1.5rem;
+        padding: 0.8rem 1rem; /* Reducimos el padding horizontal */
         border-radius: 20px;
+        /* Cambiamos a flex-direction column para apilar elementos si no caben */
+        flex-direction: row; 
+        flex-wrap: wrap; /* Permitimos que los elementos pasen a la siguiente línea */
+        justify-content: center; /* Centramos todo */
+        gap: 10px; /* Espacio entre elementos cuando se apilan */
+    }
+
+    .navbar > div {
+        /* Aseguramos que el contenedor de enlaces y botones se ajuste bien */
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 1.4rem; /* Logo un poco más pequeño */
+        width: 100%; /* Forzamos al logo a estar en su propia línea en móviles muy pequeños */
+        justify-content: center; /* Centramos el logo */
+        margin-bottom: 5px;
     }
 
     .nav-links {
         gap: 1rem;
+        flex-wrap: wrap; /* Permite que los enlaces se apilen si es necesario */
+        justify-content: center;
     }
 
     .cart-texto {
         display: none;
-        /* Oculta la palabra "Carrito" en móviles para ahorrar espacio */
     }
 }
 
@@ -1594,7 +1614,21 @@ html { scroll-behavior: smooth; }
 
 @media (max-width: 900px) {
     /* --- 1. Ajustes Generales de Texto y Botones --- */
-    .hero-text h1 { font-size: 2.5rem; }
+    .hero-text h1 { 
+        font-size: 2rem; /* Antes estaba en 2.5rem */
+        line-height: 1.2;
+    }
+
+    /* Aseguramos que el contenedor hero se ajuste */
+    .hero-moderno {
+        padding: 4rem 5%;
+        text-align: center; /* Asegura que todo el texto esté centrado */
+    }
+    
+    .hero-text p {
+         font-size: 1rem; /* Texto descriptivo un poco más pequeño */
+    }
+    
     .producto-info h1 { font-size: 2.2rem; }
     .tienda-header h1 { font-size: 2.2rem; }
     .seccion-tecnologia h2, .seccion-pricing h2 { font-size: 2rem; }
