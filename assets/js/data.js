@@ -1,29 +1,38 @@
+// assets/js/data.js
+// Un solo producto con variantes de audio (el precio no cambia)
 const productosCalmi = [
     {
-        id: "basico",
-        nombre: "Kit Calmi Básico",
-        precio: 1599, // Precio simulado en MXN
-        descripcion: "El punto de partida ideal para el monitoreo y regulación en casa. Perfecto para crear un ambiente seguro.",
-        imagen: "assets/img/kit-basico.png", // Asegúrate de tener una imagen representativa o usa un placeholder
-        beneficios: "Monitoreo de signos vitales básico, alertas de crisis al celular, sonidos relajantes en habitación.",
-        incluye: ["Pulsera inteligente", "App móvil Calmi", "Bocina inteligente"]
-    },
-    {
-        id: "intermedio",
-        nombre: "Kit Calmi Intermedio",
-        precio: 2299,
-        descripcion: "Mayor portabilidad para acompañar a tu hijo fuera de casa con reducción de ruido activo.",
+        id: "calmi-kit",
+        nombre: "Kit Calmi",
+        precio: 2900,
+        descripcion: "El ecosistema completo de monitoreo y regulación sensorial para tu hijo. Incluye pulsera inteligente, app móvil y el dispositivo de audio que mejor se adapte a su rutina.",
         imagen: "assets/img/kit-intermedio.png",
-        beneficios: "Todo lo del básico + aislamiento acústico moderado para entornos ruidosos (escuela, calle).",
-        incluye: ["Pulsera inteligente", "App móvil Calmi", "Audífonos in-ear con cancelación de ruido"]
-    },
-    {
-        id: "premium",
-        nombre: "Kit Calmi Premium",
-        precio: 3499,
-        descripcion: "La experiencia completa de aislamiento y monitoreo avanzado para máxima tranquilidad.",
-        imagen: "assets/img/kit-premium.png",
-        beneficios: "Aislamiento acústico total, audio envolvente terapéutico y sensores de alta precisión.",
-        incluye: ["Pulsera inteligente", "App móvil Calmi", "Audífonos over-ear premium"]
+        beneficios: "Monitoreo biométrico en tiempo real, regulación automática de crisis sensoriales y audio terapéutico personalizado.",
+        incluye: [
+            "Pulsera inteligente con sensores PPG/GSR",
+            "App móvil Calmi",
+            "Cable de carga magnético",
+            "Tu dispositivo de audio elegido"
+        ],
+        variantes: [
+            {
+                id: "in-ear",
+                nombre: "Audífonos In-Ear",
+                descripcion: "Discretos y portátiles. Perfectos para la escuela, terapias y salidas cotidianas.",
+                icono: "🎧"
+            },
+            {
+                id: "over-ear",
+                nombre: "Audífonos Over-Ear",
+                descripcion: "Aislamiento acústico completo. Ideales para entornos muy estimulantes.",
+                icono: "🎵"
+            },
+            {
+                id: "bocina",
+                nombre: "Bocina Inteligente",
+                descripcion: "Para el hogar. Crea un ambiente de calma en la habitación de tu hijo.",
+                icono: "🔊"
+            }
+        ]
     }
 ];

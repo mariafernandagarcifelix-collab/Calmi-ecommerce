@@ -1,106 +1,107 @@
+// assets/js/cart.js
+
 // Función principal para renderizar el carrito
 function renderizarCarrito() {
-    const listaCarrito = document.getElementById('lista-carrito');
+    const listaCarrito   = document.getElementById('lista-carrito');
     const resumenCarrito = document.getElementById('resumen-carrito');
-    const subtotalDOM = document.getElementById('subtotal-precio');
-    const totalDOM = document.getElementById('total-precio');
-    
-    // Obtenemos los datos del LocalStorage (si no hay, usamos un arreglo vacío)
+    const subtotalDOM    = document.getElementById('subtotal-precio');
+    const totalDOM       = document.getElementById('total-precio');
+
     let carrito = JSON.parse(localStorage.getItem('carritoCalmi')) || [];
 
-    // Si el carrito está vacío
+    // Carrito vacío
     if (carrito.length === 0) {
         listaCarrito.innerHTML = `
             <div class="carrito-vacio">
                 <h2>Tu carrito está vacío 🛒</h2>
-                <p>Descubre los kits que tenemos para ti y tu familia.</p>
+                <p>Descubre el Kit Calmi y elige tu dispositivo de audio.</p>
                 <br>
                 <a href="tienda.html" class="btn btn-primary">Ir a la tienda</a>
             </div>
         `;
-        resumenCarrito.style.display = 'none'; // Ocultamos el cuadro de total
+        resumenCarrito.style.display = 'none';
         actualizarContadorGlobal(0);
         return;
     }
 
-    resumenCarrito.style.display = 'block'; // Mostramos el total si hay productos
-    listaCarrito.innerHTML = ''; // Limpiamos antes de dibujar
-    
+    resumenCarrito.style.display = 'block';
+    listaCarrito.innerHTML = '';
+
     let subtotal = 0;
     let totalArticulos = 0;
     let ticketHTML = '';
 
-    // Recorremos cada ítem guardado
     carrito.forEach((item, index) => {
+        // Buscamos el producto en data.js por id
         const infoProducto = productosCalmi.find(p => p.id === item.id);
-        
-        if (infoProducto) {
-            const costoFila = infoProducto.precio * item.cantidad;
-            subtotal += costoFila;
-            totalArticulos += item.cantidad;
+        if (!infoProducto) return;
 
-            // AGREGAMOS ESTA LÍNEA PARA LLENAR EL TICKET
-            ticketHTML += `
-                <li class="ticket-item">
-                    <span>${item.cantidad}x ${infoProducto.nombre}</span> 
-                    <span style="font-weight: 600;">$${costoFila.toLocaleString()}</span>
-                </li>
-            `;
+        const costoFila = infoProducto.precio * item.cantidad;
+        subtotal       += costoFila;
+        totalArticulos += item.cantidad;
 
-            // Dibujamos el producto
-            listaCarrito.innerHTML += `
-                <div class="item-carrito">
-                    <img src="${infoProducto.imagen}" alt="${infoProducto.nombre}" onerror="this.src='https://via.placeholder.com/80?text=Kit'">
-                    
-                    <div class="item-info">
-                        <h4>${infoProducto.nombre}</h4>
-                        <p>$${infoProducto.precio.toLocaleString()} MXN</p>
-                        <button class="btn-eliminar" onclick="eliminarItem(${index})">Eliminar</button>
-                    </div>
+        // Nombre a mostrar: incluye variante si existe
+        const nombreMostrar = item.varianteNombre
+            ? `${infoProducto.nombre} <span class="variante-tag">${item.varianteNombre}</span>`
+            : infoProducto.nombre;
 
-                    <div class="controles-cantidad">
-                        <button class="btn-cantidad" onclick="cambiarCantidad(${index}, -1)">-</button>
-                        <span>${item.cantidad}</span>
-                        <button class="btn-cantidad" onclick="cambiarCantidad(${index}, 1)">+</button>
-                    </div>
+        const varianteMostrar = item.varianteNombre
+            ? `${item.varianteNombre}`
+            : '';
 
-                    <div class="precio-fila" style="font-weight: bold; font-size: 1.2rem;">
-                        $${costoFila.toLocaleString()}
-                    </div>
+        // Ticket lateral
+        ticketHTML += `
+            <li class="ticket-item">
+                <span>${item.cantidad}x ${infoProducto.nombre}${varianteMostrar ? ' — ' + varianteMostrar : ''}</span>
+                <span style="font-weight:600;">$${costoFila.toLocaleString()}</span>
+            </li>
+        `;
+
+        // Tarjeta del item
+        listaCarrito.innerHTML += `
+            <div class="item-carrito">
+                <img src="${infoProducto.imagen}" alt="${infoProducto.nombre}"
+                     onerror="this.src='https://via.placeholder.com/80?text=Kit'">
+
+                <div class="item-info">
+                    <h4>${infoProducto.nombre}</h4>
+                    ${item.varianteNombre ? `<p class="variante-elegida">🎵 ${item.varianteNombre}</p>` : ''}
+                    <p>$${infoProducto.precio.toLocaleString()} MXN</p>
+                    <button class="btn-eliminar" onclick="eliminarItem(${index})">Eliminar</button>
                 </div>
-            `;
-        }
+
+                <div class="controles-cantidad">
+                    <button class="btn-cantidad" onclick="cambiarCantidad(${index}, -1)">-</button>
+                    <span>${item.cantidad}</span>
+                    <button class="btn-cantidad" onclick="cambiarCantidad(${index}, 1)">+</button>
+                </div>
+
+                <div class="precio-fila" style="font-weight:bold; font-size:1.2rem;">
+                    $${costoFila.toLocaleString()}
+                </div>
+            </div>
+        `;
     });
 
-    // Actualizamos los textos de los totales
     subtotalDOM.innerText = `$${subtotal.toLocaleString()} MXN`;
-    totalDOM.innerText = `$${subtotal.toLocaleString()} MXN`; 
-    
-    // NUEVO: Inyectamos el ticket en el HTML
+    totalDOM.innerText    = `$${subtotal.toLocaleString()} MXN`;
+
     const ticketDOM = document.getElementById('ticket-lista');
-    if(ticketDOM) {
-        ticketDOM.innerHTML = ticketHTML;
-    }
-    
+    if (ticketDOM) ticketDOM.innerHTML = ticketHTML;
+
     actualizarContadorGlobal(totalArticulos);
 }
 
-// Función para sumar o restar cantidades
+// Cambiar cantidad
 function cambiarCantidad(indice, cambio) {
     let carrito = JSON.parse(localStorage.getItem('carritoCalmi'));
-    
     carrito[indice].cantidad += cambio;
-
-    // Si la cantidad llega a 0, lo eliminamos
-    if (carrito[indice].cantidad <= 0) {
-        carrito.splice(indice, 1); // Quita 1 elemento en la posición "indice"
-    }
-
+    if (carrito[indice].cantidad <= 0) carrito.splice(indice, 1);
     localStorage.setItem('carritoCalmi', JSON.stringify(carrito));
-    renderizarCarrito(); // Volvemos a dibujar
+    renderizarCarrito();
 }
 
-// Función para eliminar un producto completo
+// Eliminar item
 function eliminarItem(indice) {
     let carrito = JSON.parse(localStorage.getItem('carritoCalmi'));
     carrito.splice(indice, 1);
@@ -108,22 +109,22 @@ function eliminarItem(indice) {
     renderizarCarrito();
 }
 
-// Función para simular el pago
+// Simular compra
 async function simularCompra() {
     let carrito = JSON.parse(localStorage.getItem('carritoCalmi')) || [];
-    
-    // Preparamos los datos para el servidor
-    // Cruzamos con data.js (o productos obtenidos) para tener precios
+
     const datosOrden = {
         productos: carrito.map(item => {
             const info = productosCalmi.find(p => p.id === item.id);
             return {
-                id_producto: item.id,
-                cantidad: item.cantidad,
+                id_producto:    item.id,
+                variante:       item.varianteId || null,
+                variante_nombre: item.varianteNombre || null,
+                cantidad:       item.cantidad,
                 precio_unitario: info ? info.precio : 0
             };
         }),
-        total: parseFloat(document.getElementById('total-precio').innerText.replace(/[^0-9.-]+/g,"")) * 1000 // Limpieza simple de moneda
+        total: parseFloat(document.getElementById('total-precio').innerText.replace(/[^0-9.-]+/g, ''))
     };
 
     try {
@@ -134,33 +135,20 @@ async function simularCompra() {
         });
 
         if (respuesta.ok) {
-            const resultado = await respuesta.json();
-            
-            // ¡ADIÓS ALERT! HOLA NOTIFICACIÓN
-            mostrarNotificacion(`¡Compra confirmada!`, 'exito');
-            
+            mostrarNotificacion('¡Compra confirmada! 🎉', 'exito');
             localStorage.removeItem('carritoCalmi');
-            
-            // Le damos 2 segundos para que el usuario lea la notificación antes de mandarlo al inicio
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 2000);
+            setTimeout(() => { window.location.href = 'index.html'; }, 2000);
         }
     } catch (error) {
-        // Notificación de error si falla el servidor
-        mostrarNotificacion("Hubo un problema con el servidor. Intenta más tarde.", "error");
+        mostrarNotificacion('Hubo un problema con el servidor. Intenta más tarde.', 'error');
     }
 }
 
-// Función para que el numerito del carrito en el menú de arriba se actualice
+// Actualizar badge del navbar
 function actualizarContadorGlobal(cantidad) {
     const contadorDOM = document.getElementById('cart-count');
-    if (contadorDOM) {
-        contadorDOM.innerText = cantidad;
-    }
+    if (contadorDOM) contadorDOM.innerText = cantidad;
 }
 
-// ==========================================
-// EJECUTAR AL CARGAR LA PÁGINA
-// ==========================================
+// Ejecutar al cargar
 renderizarCarrito();
