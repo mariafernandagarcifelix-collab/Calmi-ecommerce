@@ -1,6 +1,23 @@
+// Limpia el carrito de entradas obsoletas (IDs que ya no existen en el catálogo)
+function limpiarCarritoObsoleto() {
+    // productosCalmi se define en data.js; si aún no cargó, esperamos
+    if (typeof productosCalmi === 'undefined') return;
+
+    const carrito = JSON.parse(localStorage.getItem('carritoCalmi')) || [];
+    const idsValidos = productosCalmi.map(p => p.id);
+    const carritoLimpio = carrito.filter(item => idsValidos.includes(item.id));
+
+    // Solo reescribimos si algo cambió (evita operaciones innecesarias)
+    if (carritoLimpio.length !== carrito.length) {
+        localStorage.setItem('carritoCalmi', JSON.stringify(carritoLimpio));
+    }
+}
 
 // Función global para actualizar el contador del carrito en la barra de navegación
 function actualizarContadorNav() {
+    // 0. Purgar entradas inválidas antes de contar
+    limpiarCarritoObsoleto();
+
     // 1. Obtenemos el carrito de la memoria
     const carrito = JSON.parse(localStorage.getItem('carritoCalmi')) || [];
     

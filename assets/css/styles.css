@@ -1742,8 +1742,8 @@ html { scroll-behavior: smooth; }
 
 .variante-nombre {
     font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-dark);
+    font-weight: 700;
+    color: #111;
 }
 
 .variante-opcion.seleccionada .variante-nombre {
@@ -2219,5 +2219,167 @@ html { scroll-behavior: smooth; }
     font-weight: 600;
     color: var(--text-dark);
     margin-bottom: 1.5rem;
+}
+
+/* =========================================
+   23. COMPONENTES INLINE DE PRODUCTO INFO
+   ========================================= */
+
+/* Línea divisoria sutil entre bloques */
+.info-divider {
+    border: 0;
+    border-top: 1px solid var(--azul-pastel);
+    margin: 2rem 0;
+}
+
+/* Títulos de cada mini-sección dentro del panel */
+.info-titulo-seccion {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0 0 0.75rem;
+    letter-spacing: 0.2px;
+}
+
+/* Subtexto gris bajo el título */
+.info-subtexto {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0 0 1rem;
+}
+
+/* ── Qué incluye (lista vertical con icono) ── */
+.incluye-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.incluye-inline-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.incluye-inline-icono {
+    font-size: 1.6rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1;
+}
+
+.incluye-inline-item strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.2rem;
+}
+
+.incluye-inline-item p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── Pasos cómo funciona ── */
+.pasos-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.paso-inline {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--white);
+    border: 1px solid var(--azul-pastel);
+    border-radius: 14px;
+    padding: 1rem 1.25rem;
+    transition: box-shadow 0.25s ease;
+}
+
+.paso-inline:hover {
+    box-shadow: 0 6px 20px rgba(49, 20, 101, 0.08);
+}
+
+.paso-inline-num {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: rgba(167, 139, 250, 0.4);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 2rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.paso-inline strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: 0.2rem;
+}
+
+.paso-inline p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── Beneficios ── */
+.beneficios-inline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.beneficio-inline-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 0.9rem 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--azul-pastel);
+    background: var(--white);
+    transition: box-shadow 0.25s ease;
+}
+
+.beneficio-inline-item:hover {
+    box-shadow: 0 6px 18px rgba(49, 20, 101, 0.07);
+}
+
+/* Tarjeta de beneficio destacada */
+.beneficio-inline-destacado {
+    border-color: var(--color-primario);
+    background: linear-gradient(135deg,
+        rgba(49, 20, 101, 0.03) 0%,
+        rgba(167, 139, 250, 0.07) 100%);
+}
+
+.beneficio-inline-icono {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1;
+}
+
+.beneficio-inline-item strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: 0.2rem;
+}
+
+.beneficio-inline-item p {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    line-height: 1.65;
+    margin: 0;
 }
 
