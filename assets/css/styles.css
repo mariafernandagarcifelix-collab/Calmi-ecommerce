@@ -1843,14 +1843,15 @@ html { scroll-behavior: smooth; }
 /* Label del selector dentro de la pricing card */
 .selector-label-pricing {
     font-size: 0.9rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
+    font-weight: 700;
+    color: #fff;
     margin: 1.25rem 0 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.25);
 }
 
-/* Grid de variantes dentro de pricing card (fondo oscuro) */
+/* Grid de variantes dentro de pricing card */
 .variantes-grid-pricing {
     display: flex;
     gap: 0.75rem;
@@ -1861,30 +1862,37 @@ html { scroll-behavior: smooth; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    padding: 10px 18px;
+    gap: 6px;
+    padding: 12px 18px;
     border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.08);
+    /* Borde y fondo visibles tanto en modo claro como oscuro */
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     text-decoration: none;
     flex: 1;
     transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 .variante-opcion-pricing:hover {
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.35);
+    border-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
 }
 
 .variante-opcion-pricing .variante-icono {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
 }
 
 .variante-opcion-pricing .variante-nombre {
-    font-size: 0.78rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 /* =========================================
@@ -1908,4 +1916,308 @@ html { scroll-behavior: smooth; }
     font-weight: 600;
     border: 1px solid rgba(167, 139, 250, 0.3);
     margin-left: 6px;
-}
+}
+
+/* =========================================
+   21. CARRITO — SEPARACION PRECIO / CONTROLES
+   ========================================= */
+
+/* Empujar el precio al extremo derecho del flex row */
+.precio-fila {
+    margin-left: auto;
+    padding-left: 2rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    white-space: nowrap;
+    color: var(--color-primario);
+}
+
+/* Asegurar que los controles de cantidad tengan espacio propio */
+.controles-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+/* Separar el bloque de info del bloque de controles */
+.item-carrito {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.item-info {
+    flex: 1;
+    min-width: 140px;
+}
+
+/* =========================================
+   22. SECCIONES DE DETALLE DEL PRODUCTO
+   ========================================= */
+
+/* Tagline encima del título */
+.producto-tagline {
+    font-size: 0.95rem;
+    color: var(--color-primario);
+    font-weight: 500;
+    font-style: italic;
+    border-left: 3px solid var(--color-secundario);
+    padding-left: 1rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
+
+/* Wrapper de cada sección grande */
+.detalle-seccion {
+    padding: 5rem 6%;
+    border-top: 1px solid var(--azul-pastel);
+}
+
+/* Variante oscura */
+.detalle-seccion-oscura {
+    background: linear-gradient(135deg, #0f0726 0%, #1e1040 100%);
+    border-top: none;
+}
+
+.detalle-seccion-oscura .detalle-seccion-header h2 {
+    color: #fff;
+}
+
+.detalle-seccion-oscura .detalle-seccion-header p {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Encabezado de sección */
+.detalle-seccion-header {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+}
+
+.detalle-seccion-header h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-dark);
+    margin: 0.75rem 0 1rem;
+    line-height: 1.25;
+}
+
+.detalle-seccion-header p {
+    color: var(--text-light);
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0;
+}
+
+/* ── Sección 1: Qué incluye ── */
+.incluye-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.incluye-card {
+    background: var(--white);
+    border: 1px solid var(--azul-pastel);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.incluye-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(49, 20, 101, 0.1);
+}
+
+.incluye-icono-grande {
+    font-size: 3.5rem;
+    line-height: 1;
+}
+
+.incluye-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin: 0;
+}
+
+.incluye-card > p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.incluye-specs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--azul-pastel);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.incluye-specs li {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    padding-left: 1.2rem;
+    position: relative;
+}
+
+.incluye-specs li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--verde-menta);
+    font-weight: 700;
+}
+
+/* ── Sección 2: Cómo funciona ── */
+.pasos-grid {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.paso-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    flex: 1;
+    min-width: 240px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: background 0.3s ease;
+}
+
+.paso-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.paso-numero {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(167, 139, 250, 0.25);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.paso-icono {
+    font-size: 2.2rem;
+    margin-top: -0.5rem;
+}
+
+.paso-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.paso-card p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.paso-conector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(167, 139, 250, 0.5);
+    font-size: 2rem;
+    padding: 0 0.5rem;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+@media (max-width: 768px) {
+    .paso-conector { transform: rotate(90deg); width: 100%; }
+    .pasos-grid    { flex-direction: column; align-items: center; }
+    .paso-card     { max-width: 100%; width: 100%; }
+}
+
+/* ── Sección 3: Beneficios ── */
+.beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.75rem;
+    max-width: 1100px;
+    margin: 0 auto 3rem;
+}
+
+.beneficio-card {
+    background: var(--white);
+    border: 1px solid var(--azul-pastel);
+    border-radius: 24px;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.beneficio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 36px rgba(49, 20, 101, 0.1);
+}
+
+/* Card central destacada */
+.beneficio-destacado {
+    border-color: var(--color-primario);
+    background: linear-gradient(135deg,
+        rgba(49, 20, 101, 0.04) 0%,
+        rgba(167, 139, 250, 0.06) 100%);
+    box-shadow: 0 8px 28px rgba(49, 20, 101, 0.08);
+}
+
+.beneficio-icono {
+    font-size: 2.8rem;
+    line-height: 1;
+}
+
+.beneficio-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin: 0;
+}
+
+.beneficio-card p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* CTA final */
+.cta-final {
+    text-align: center;
+    padding-top: 1rem;
+}
+
+.cta-final p {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+}
+
