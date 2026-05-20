@@ -70,6 +70,42 @@ body.dark-mode .cart-icon {
     border: 1px solid rgba(167, 139, 250, 0.2);
 }
 
+/* 4. Títulos de sección en el panel de detalle del producto */
+body.dark-mode .info-titulo-seccion {
+    color: #F1F5F9;
+}
+
+/* 5. Nombre de variante de audio (In-Ear, Over-Ear, Bocina) */
+body.dark-mode .variante-nombre {
+    color: #F1F5F9;
+}
+
+/* 6. Textos strong de las listas inline (qué incluye, pasos, beneficios) */
+body.dark-mode .incluye-inline-item strong,
+body.dark-mode .paso-inline strong,
+body.dark-mode .beneficio-inline-item strong {
+    color: #F1F5F9;
+}
+
+/* 7. Botones de variante en la pricing card — modo oscuro (fondo oscuro de la card) */
+body.dark-mode .selector-label-pricing {
+    color: #fff;
+}
+
+body.dark-mode .variante-opcion-pricing {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+body.dark-mode .variante-opcion-pricing:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.22);
+}
+
+body.dark-mode .variante-opcion-pricing .variante-nombre {
+    color: #fff;
+}
+
 /* Pequeño ajuste para que la transición de colores sea suave */
 body {
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -1844,11 +1880,10 @@ html { scroll-behavior: smooth; }
 .selector-label-pricing {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #fff;
+    color: var(--color-primario);
     margin: 1.25rem 0 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    text-shadow: 0 1px 4px rgba(0,0,0,0.25);
 }
 
 /* Grid de variantes dentro de pricing card */
@@ -1865,34 +1900,29 @@ html { scroll-behavior: smooth; }
     gap: 6px;
     padding: 12px 18px;
     border-radius: 14px;
-    /* Borde y fondo visibles tanto en modo claro como oscuro */
-    border: 2px solid rgba(255, 255, 255, 0.55);
-    background: rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    border: 2px solid var(--color-primario);
+    background: rgba(167, 139, 250, 0.08);
     text-decoration: none;
     flex: 1;
     transition: all 0.25s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 8px rgba(49, 20, 101, 0.08);
 }
 
 .variante-opcion-pricing:hover {
-    background: rgba(255, 255, 255, 0.35);
-    border-color: #fff;
+    background: rgba(167, 139, 250, 0.18);
+    border-color: var(--color-secundario);
     transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+    box-shadow: 0 6px 18px rgba(49, 20, 101, 0.15);
 }
 
 .variante-opcion-pricing .variante-icono {
     font-size: 1.8rem;
-    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.2));
 }
 
 .variante-opcion-pricing .variante-nombre {
     font-size: 0.8rem;
     font-weight: 700;
-    color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    color: var(--color-primario);
 }
 
 /* =========================================
